@@ -14,10 +14,14 @@ for _, val in enumerate(result[4]):
     print(val, result[4][val])
 
 btc['ChangeOpen'] = btc['Open'].pct_change()
+plt.plot(btc['ChangeOpen'])
+plt.show()
 result = adfuller(btc['ChangeOpen'].tail(1000))
 print(result[0])         # computes the ADF statistic
 for _, val in enumerate(result[4]):
     print(val, result[4][val])
+
+print( 'BitCoin standard deviation of percentage change'  ,btc['ChangeOpen'].std())
 
 # This code proves that the time series of bitcoin data had a first order trend which could be removed easily
 
