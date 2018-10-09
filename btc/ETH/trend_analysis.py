@@ -5,23 +5,23 @@ import datetime
 import matplotlib.pyplot as plt
 from statsmodels.tsa.stattools import adfuller
 
-btc = web.get_data_yahoo('BTC-USD', start=datetime.datetime(2014,1,1), end=datetime.datetime(2019,1,1))
+eth = web.get_data_yahoo('ETH-USD', start=datetime.datetime(2014,1,1), end=datetime.datetime(2019,1,1))
 
 # btc['Open']
-result = adfuller(btc['Open'].tail(1000))
+result = adfuller(eth['Open'].tail(1000))
 print(result[0])         # computes the ADF statistic
 for _, val in enumerate(result[4]):
     print(val, result[4][val])
 
-btc['ChangeOpen'] = btc['Open'].pct_change()
-plt.plot(btc['ChangeOpen'])
+eth['ChangeOpen'] = eth['Open'].pct_change()
+plt.plot(eth['ChangeOpen'])
 plt.show()
-result = adfuller(btc['ChangeOpen'].tail(1000))
+result = adfuller(eth['ChangeOpen'].tail(1000))
 print(result[0])         # computes the ADF statistic
 for _, val in enumerate(result[4]):
     print(val, result[4][val])
 
-print( 'BitCoin standard deviation of percentage change'  ,btc['ChangeOpen'].std())
+print( 'Ethereum standard deviation of percentage change'  ,eth['ChangeOpen'].std())
 
 # This code proves that the time series of bitcoin data had a first order trend which could be removed easily
 
